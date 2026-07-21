@@ -39,9 +39,20 @@ export const CTAButton = ({ text = "ENROLL NOW", href = "https://selar.com/p/qel
 
   if (!isVisible) return null;
 
+  const handleClick = () => {
+    const w = window as any;
+    if (w.fbq) {
+      w.fbq('track', 'InitiateCheckout', {
+        value: 30000,
+        currency: 'NGN'
+      });
+    }
+  };
+
   return (
     <motion.a
       href={href}
+      onClick={handleClick}
       whileHover={{ y: -2 }}
       whileTap={{ scale: 0.98 }}
       className={`bg-gradient-to-r from-[#C9A227] to-[#D4AF37] text-white font-black py-5 px-8 rounded-2xl shadow-[0_10px_30px_-5px_rgba(201,162,39,0.5)] transition-all border border-white/20 flex items-center justify-center gap-2 ${className}`}

@@ -75,7 +75,7 @@ export default function App() {
     } else {
       document.head.appendChild(t);
     }
-    w.fbq('init', '1882837222378915');
+    w.fbq('init', 'YOUR_PIXEL_ID_HERE');
     w.fbq('track', 'PageView');
   }, []);
 
