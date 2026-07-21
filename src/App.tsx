@@ -18,19 +18,27 @@ export default function App() {
   const [showStickyCTA, setShowStickyCTA] = useState(false);
 
   const [spotsRemaining, setSpotsRemaining] = useState(() => {
-    const saved = localStorage.getItem('gig_spots_v2');
-    const lastUpdate = localStorage.getItem('gig_spots_time_v2');
-    if (saved && lastUpdate) {
-      const periodsElapsed = Math.floor((Date.now() - parseInt(lastUpdate, 10)) / (15 * 60 * 1000));
-      const currentSpots = Math.max(1, parseInt(saved, 10) - periodsElapsed);
-      return currentSpots;
+    try {
+      const saved = localStorage.getItem('gig_spots_v2');
+      const lastUpdate = localStorage.getItem('gig_spots_time_v2');
+      if (saved && lastUpdate) {
+        const periodsElapsed = Math.floor((Date.now() - parseInt(lastUpdate, 10)) / (15 * 60 * 1000));
+        const currentSpots = Math.max(1, parseInt(saved, 10) - periodsElapsed);
+        return currentSpots;
+      }
+    } catch (e) {
+      console.warn("localStorage access denied", e);
     }
     return 23;
   });
 
   useEffect(() => {
-    localStorage.setItem('gig_spots_v2', spotsRemaining.toString());
-    localStorage.setItem('gig_spots_time_v2', Date.now().toString());
+    try {
+      localStorage.setItem('gig_spots_v2', spotsRemaining.toString());
+      localStorage.setItem('gig_spots_time_v2', Date.now().toString());
+    } catch (e) {
+      console.warn("localStorage access denied", e);
+    }
   }, [spotsRemaining]);
 
   useEffect(() => {

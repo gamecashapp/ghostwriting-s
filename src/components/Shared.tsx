@@ -12,10 +12,16 @@ export const CTAButton = ({ text = "ENROLL NOW", href = "https://selar.com/p/qel
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    let startTime = localStorage.getItem('vsl_start_time');
-    if (!startTime) {
-      startTime = Date.now().toString();
-      localStorage.setItem('vsl_start_time', startTime);
+    let startTime;
+    try {
+      startTime = localStorage.getItem('vsl_start_time');
+      if (!startTime) {
+        startTime = Date.now().toString();
+        localStorage.setItem('vsl_start_time', startTime);
+      }
+    } catch (e) {
+      console.warn("localStorage access denied", e);
+      startTime = Date.now().toString(); // Fallback for this session
     }
 
     const timeElapsed = Date.now() - parseInt(startTime, 10);
