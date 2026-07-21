@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { PlayCircle, ShieldCheck, Star, ChevronDown } from 'lucide-react';
+import { PlayCircle, ShieldCheck, Star, ChevronUp } from 'lucide-react';
 import { CTAButton, FadeIn, Section } from './Shared';
 
 export default function HeroVSL() {
@@ -36,15 +36,7 @@ export default function HeroVSL() {
 
 
         <FadeIn delay={0.4}>
-          <div className="flex flex-col items-center mb-6">
-            <h3 className="text-2xl md:text-3xl font-bold mb-2 uppercase tracking-wide text-[#D4AF37]">Watch This First</h3>
-            <div className="flex flex-col items-center text-[#C9A227] animate-bounce">
-              <ChevronDown className="w-8 h-8 -mb-4" />
-              <ChevronDown className="w-8 h-8 -mb-4" />
-              <ChevronDown className="w-8 h-8" />
-            </div>
-          </div>
-          <div className="relative max-w-7xl mx-auto w-full rounded-3xl overflow-hidden shadow-2xl bg-[#0F2038] border border-white/20 p-2 md:p-4 backdrop-blur-sm mb-12">
+          <div className="relative max-w-7xl mx-auto w-full rounded-3xl overflow-hidden shadow-2xl bg-[#0F2038] border border-white/20 p-2 md:p-4 backdrop-blur-sm mb-6">
             <div className="aspect-video bg-black rounded-2xl relative flex items-center justify-center overflow-hidden">
               <iframe
                 className="absolute inset-0 w-full h-full"
@@ -55,6 +47,14 @@ export default function HeroVSL() {
                 allowFullScreen
               ></iframe>
             </div>
+          </div>
+          <div className="flex flex-col items-center mb-8">
+            <div className="flex flex-col items-center text-[#C9A227] animate-bounce mb-2">
+              <ChevronUp className="w-8 h-8 -mb-4" />
+              <ChevronUp className="w-8 h-8 -mb-4" />
+              <ChevronUp className="w-8 h-8" />
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-wide text-[#D4AF37]">Watch This First</h3>
           </div>
         </FadeIn>
 
